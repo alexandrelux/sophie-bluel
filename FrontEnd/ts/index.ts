@@ -1,3 +1,4 @@
+import { WorklistComponent } from "./components/worklist.js";
 import { User } from "./models/User.js";
 import { createWork, deleteWork, getCategories, getWorks, login } from "./services/sophiebluel.js";
 import { imagendur } from "./utils/const.js";
@@ -17,7 +18,7 @@ const testCreate = async () => {
 // testCreate();
 
 // Read
-
+WorklistComponent();
 
 // Delete
 const testDelete = async () => {
