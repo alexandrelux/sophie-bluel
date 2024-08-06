@@ -17,13 +17,10 @@ export const login = async (user: User):Promise<UserAck | undefined> => {
           });
 
         const responseData = await response.json();
-        console.log(responseData);
         return responseData as UserAck;
     } catch (error) {
         console.log("error");
         return undefined;
-    } finally {
-        console.log("finally");
     }
 } 
 
@@ -41,44 +38,34 @@ export const createWork = async (token: string, image: string, title:string, cat
                 category: category
             }),
           });
-        console.log(response.status);
         const responseData = await response.json();
-        console.log(responseData);
         return responseData as WorkAck;
     } catch (error) {
         console.log("error");
         return undefined;
-    } finally {
-        console.log("finally");
     }
 } 
 
 // READ
-export const getWorks = async ():Promise<Array<Work> | undefined> => {
+export const getWorks = async () => {
     try {
         const response = await fetch(API_URL+"/works");
         const responseData = await response.json();
-        console.log(responseData);
-        return responseData as Array<Work>;
+        return responseData as Work[];
     } catch (error) {
         console.log("error");
         return undefined;
-    } finally {
-        console.log("finally");
     }
 }
 
-export const getCategories = async ():Promise<Array<Category> | undefined> => {
+export const getCategories = async () => {
     try {
         const response = await fetch(API_URL+"/categories");
         const responseData = await response.json();
-        console.log(responseData);
-        return responseData as Array<Category>;
+        return responseData as Category[];
     } catch (error) {
         console.log("error");
         return undefined;
-    } finally {
-        console.log("finally");
     }
 }
 
@@ -94,10 +81,7 @@ export const deleteWork = async (token: string, id:number) => {
               "Authorization": 'Bearer ' + token,
             }
           });
-        console.log(response.status);
     } catch (error) {
         console.log("error");
-    } finally {
-        console.log("finally");
     }
 } 

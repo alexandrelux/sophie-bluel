@@ -1,0 +1,37 @@
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 53px;
+    margin-bottom: 53px;
+    gap: 10px;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid;
+    border-color: #1D6154;
+    border-radius: 60px;
+    color: #1D6154;
+    font-family: 'Syne';
+    font-size: 16px;
+}
+
+.filter:has(input:checked) {
+    background-color: #1D6154;
+    border-color: #1D6154;
+    color: white;
+}
+
+.filter input {
+    opacity: 0;
+    width: 0;
+    position: absolute;
+}
+
+.filter label {
+    padding: 10px 20px;
+}

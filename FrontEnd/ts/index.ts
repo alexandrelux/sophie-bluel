@@ -1,5 +1,8 @@
+import { FilterComponent } from "./components/filtrer.js";
 import { WorklistComponent } from "./components/worklist.js";
+import { Category } from "./models/Category.js";
 import { User } from "./models/User.js";
+import { Work } from "./models/Work.js";
 import { createWork, deleteWork, getCategories, getWorks, login } from "./services/sophiebluel.js";
 import { imagendur } from "./utils/const.js";
 
@@ -18,7 +21,35 @@ const testCreate = async () => {
 // testCreate();
 
 // Read
-WorklistComponent();
+const init = async () => {
+    const works = await getWorks();
+    const categories = await getCategories();
+
+    if (works != undefined) {
+        WorklistComponent(works);
+    }
+
+    if (categories != undefined) {
+        FilterComponent(categories);
+    }
+    return works;
+}
+const works = await init();
+
+if (works != undefined) {
+    const radioButtons = document.querySelectorAll('.filter input');
+    radioButtons.forEach((radioButton) => {
+        radioButton.addEventListener("click", (event) => {
+                const selectedValue = (event.target as HTMLInputElement).value;
+                if (selectedValue === "0") {
+                    WorklistComponent(works);
+                } else {
+                    const currentWork = works.filter((work: Work) => work.categoryId.toString() === selectedValue);
+                    WorklistComponent(currentWork);
+                }
+        });
+    });
+}
 
 // Delete
 const testDelete = async () => {
