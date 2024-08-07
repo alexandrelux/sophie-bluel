@@ -1,10 +1,10 @@
 import { FilterComponent } from "./components/filtrer.js";
 import { WorklistComponent } from "./components/worklist.js";
-import { Category } from "./models/Category.js";
 import { User } from "./models/User.js";
 import { Work } from "./models/Work.js";
 import { createWork, deleteWork, getCategories, getWorks, login } from "./services/sophiebluel.js";
 import { imagendur } from "./utils/const.js";
+import { amIsLoged, handleLogOutClick } from "./utils/functions.js";
 
 // Create
 const testCreate = async () => {
@@ -34,7 +34,11 @@ const init = async () => {
     }
     return works;
 }
+
 const works = await init();
+
+amIsLoged();
+handleLogOutClick();
 
 if (works != undefined) {
     const radioButtons = document.querySelectorAll('.filter input');
