@@ -3,7 +3,7 @@
 import { Category } from "../models/Category.js";
 import { User, UserAck } from "../models/User.js";
 import { Work, WorkAck } from "../models/Work.js";
-import { API_URL, tockendur } from "../utils/const.js";
+import { API_URL } from "../utils/const.js";
 
 // CREATE
 export const login = async (user: User):Promise<UserAck | undefined> => {

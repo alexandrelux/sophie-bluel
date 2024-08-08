@@ -4,6 +4,7 @@ export const WorklistComponent = (worklist : Work[]) => {
     if (worklist != undefined) {
         const worklistDom = worklist.map(
             (currentWork) =>  (
+            // template string
             `<figure><img src='${currentWork.imageUrl}' alt='${currentWork.title}'><figcaption>${currentWork.title}</figcaption></figure>`)
         ).join('');
   
