@@ -3,7 +3,7 @@
 import { Category } from "../models/Category.js";
 import { User, UserAck } from "../models/User.js";
 import { Work, WorkAck } from "../models/Work.js";
-import { API_URL, tockendur } from "../utils/const.js";
+import { API_URL } from "../utils/const.js";
 
 // CREATE
 export const login = async (user: User):Promise<UserAck | undefined> => {
@@ -72,7 +72,7 @@ export const getCategories = async () => {
 // UPDATE 
 
 // DELETE
-export const deleteWork = async (token: string, id:number) => {
+export const deleteWork = async (token: string, id:string) => {
     try {
         const response = await fetch(API_URL+"/works/"+id, {
             method: "DELETE",

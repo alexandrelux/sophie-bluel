@@ -1,3 +1,4 @@
+import { deleteBtnComponent } from "./components/deleteBtn.js";
 import { FilterComponent } from "./components/filtrer.js";
 import { WorklistComponent } from "./components/worklist.js";
 import { User } from "./models/User.js";
@@ -53,19 +54,5 @@ if (works != undefined) {
                 }
         });
     });
-}
 
-// Delete
-const testDelete = async () => {
-    const userEnDur: User = {
-        email: 'sophie.bluel@test.tld',
-        password: 'S0phie'
-      };
-    const currentUser = await login(userEnDur);
-    if (currentUser?.token) {
-        console.log(currentUser?.token);
-        deleteWork(currentUser.token, 11);
-    }
 }
-// testDelete();
-
