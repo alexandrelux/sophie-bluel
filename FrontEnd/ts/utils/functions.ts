@@ -38,4 +38,20 @@ export const handleLogOutClick = () => {
             amIsLoged();
         });
     }
+
+    const modifyBtn = document.querySelector('.modify-btn') as HTMLElement;
+    const modal = document.querySelector('.modal') as HTMLElement;
+    const closebtn = document.querySelector('.closebtn') as HTMLElement;
+
+    if (modifyBtn && modal) {
+        modifyBtn.addEventListener("click", () => {
+            modal.style.display='flex';
+        });
+    } 
+
+    if (closebtn && modal) {
+        closebtn.addEventListener("click", () => {
+            modal.style.display='none';
+        });
+    } 
 }
