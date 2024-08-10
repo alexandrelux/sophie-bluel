@@ -1,37 +1,41 @@
-#login {
+.myForm {
 	width:380px;
-margin: auto;
-margin-top: 150px;
-margin-bottom: 380px;
+	margin: auto;
+	margin-top: 150px;
+	margin-bottom: 380px;
 }
-#login > * {
+.myForm > * {
 	text-align: center;
 
 }
-#login h2{
+.myForm h2{
 	margin-bottom: 20px;
 }
-#login form {
+.myForm form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#login input {
+.myForm input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#login label {
+.myForm label {
 	margin: 2em 0 1em 0;
 }
-#login textarea {
+.myForm textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#login a {
+.myForm a {
     text-decoration: underline;
+}
+
+.pt-4 {
+	padding-top: 16px;
 }

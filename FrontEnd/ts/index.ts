@@ -1,27 +1,9 @@
-import { deleteBtnComponent } from "./components/deleteBtn.js";
 import { FilterComponent } from "./components/filtrer.js";
 import { WorklistComponent } from "./components/worklist.js";
-import { User } from "./models/User.js";
 import { Work } from "./models/Work.js";
-import { createWork, deleteWork, getCategories, getWorks, login } from "./services/sophiebluel.js";
-import { imagendur } from "./utils/const.js";
+import { createWork, getCategories, getWorks, login } from "./services/sophiebluel.js";
 import { amIsLoged, handleLogOutClick } from "./utils/functions.js";
 
-// Create
-const testCreate = async () => {
-    const userEnDur: User = {
-        email: 'sophie.bluel@test.tld',
-        password: 'S0phie'
-      };
-    const currentUser = await login(userEnDur);
-    if (currentUser?.token) {
-        console.log(currentUser?.token);
-        createWork(currentUser.token, imagendur, "toto", 3);
-    }
-}
-// testCreate();
-
-// Read
 const init = async () => {
     const works = await getWorks();
     const categories = await getCategories();
@@ -55,4 +37,40 @@ if (works != undefined) {
         });
     });
 
+}
+
+const formAddPhoto = document.getElementById('formAddPhoto');
+if (formAddPhoto) {
+    formAddPhoto.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const newphotoDOM = document.getElementById("newphoto") as HTMLInputElement;
+        const titleDOM = document.getElementById("title") as HTMLInputElement;
+        const categorieDOM = document.getElementById("category") as HTMLInputElement;
+
+        if (newphotoDOM && titleDOM && categorieDOM) {
+            const localToken = window.localStorage.getItem("token");
+            if (localToken) {
+                try {
+                    if (newphotoDOM.files) {
+                        const file = newphotoDOM.files[0];
+                        await createWork(localToken, file, titleDOM.value, parseInt(categorieDOM.value));
+                        const works = await getWorks();
+                        if (works !== undefined) {
+                            WorklistComponent(works);
+                            const modal = document.querySelector('.modalDeletePhoto') as HTMLElement;
+                            const modalAddPhoto = document.querySelector('.modalAddPhoto') as HTMLElement;
+                            if (modal && modalAddPhoto) {
+                                modalAddPhoto.style.display='none';
+                                modal.style.display='none';
+                            } 
+                        }
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        } else {
+            console.log("Form incorrect or empty");
+        }
+    });
 }

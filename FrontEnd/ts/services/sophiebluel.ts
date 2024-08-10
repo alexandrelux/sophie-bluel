@@ -6,7 +6,7 @@ import { Work, WorkAck } from "../models/Work.js";
 import { API_URL } from "../utils/const.js";
 
 // CREATE
-export const login = async (user: User):Promise<UserAck | undefined> => {
+export const login = async (user: User) => {
     try {
         const response = await fetch(API_URL+"/users/login", {
             method: "POST",
@@ -24,27 +24,29 @@ export const login = async (user: User):Promise<UserAck | undefined> => {
     }
 } 
 
-export const createWork = async (token: string, image: string, title:string, category:number):Promise<WorkAck | undefined> => {
+export const createWork = async (token: string, image: File, title: string, category: number) => {
     try {
-        const response = await fetch(API_URL+"/works", {
+        const formData = new FormData();
+        formData.append("image", image); // Image file
+        formData.append("title", title);
+        formData.append("category", category.toString());
+
+        const response = await fetch(API_URL + "/works", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
-              "Authorization": 'Bearer '+token,
+              "Authorization": 'Bearer ' + token,
             },
-            body: JSON.stringify({
-                image: image,
-                title: title,
-                category: category
-            }),
-          });
+            body: formData,
+        });
+
         const responseData = await response.json();
         return responseData as WorkAck;
     } catch (error) {
         console.log("error");
         return undefined;
     }
-} 
+};
+
 
 // READ
 export const getWorks = async () => {
@@ -68,8 +70,6 @@ export const getCategories = async () => {
         return undefined;
     }
 }
-
-// UPDATE 
 
 // DELETE
 export const deleteWork = async (token: string, id:string) => {
