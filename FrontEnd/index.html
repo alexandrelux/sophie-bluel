@@ -70,14 +70,14 @@
 			<input type="email" name="email" id="email">
 			<label for="message">Message</label>
 			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
+			<input class="contactBtn" type="submit" value="Envoyer">
 		</form>
 	</section>
 
 	<div class="modal bg modalDeletePhoto">
 		<div class="window">
 			<div class="titlebar">
-				<button class="closebtn"><i class="fa-solid fa-x"></i></button>
+				<button class="closebtn"><i class="fa-solid fa-xmark"></i></button>
 			</div>
 			<h3>Galerie photo</h3>
 			<div class="photos">
@@ -90,7 +90,7 @@
 		<div class="window">
 			<div class="titlebar">
 				<button class="backbtn"><i class="fa-solid fa-arrow-left"></i></button>
-				<button class="closebtn"><i class="fa-solid fa-x"></i></button>
+				<button class="closebtn"><i class="fa-solid fa-xmark"></i></button>
 			</div>
 			<h3>Ajout photo</h3>
 			<form id="formAddPhoto" class="myForm formAddPhoto" action="#" method="POST" enctype="multipart/form-data">
@@ -100,12 +100,14 @@
 					<p>jpg, png : 4mo max</p>
 				</label>
 				<input required type="file" id="newphoto" name="newphoto" accept="image/png, image/jpeg"/>
-				<label class="pt-4" for="title">Titre</label>
-				<input required name="title" id="title" value="">
-				<label class="pt-4" for="category">Catégorie</label>
-				<input required type="number" name="category"  id="category" min="1" max="3">
+				<label class="labelAddInfos" for="title">Titre</label>
+				<input required class="inputAddInfos" name="title" id="title" value="">
+				<label class="labelAddInfos" for="category-select">Catégorie</label>
+				<select required class="inputAddInfos" name="category" id="category-select">
+					<option value=""></option>
+				</select>
 				<div class="separator"></div>
-				<input type="submit" value="Valider">
+				<input id="btnAddPhoto" class="btn" type="submit" value="Valider" disabled="true">
 			</form>
 		</div>
 	</div>

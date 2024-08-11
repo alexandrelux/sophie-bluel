@@ -8,18 +8,15 @@
 	text-align: center;
 
 }
-.myForm h2{
-	margin-bottom: 20px;
-}
+
 .myForm form {
 	text-align: left;
-	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
 .myForm input {
-	height: 50px;
+	height: 46px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -36,6 +33,59 @@
     text-decoration: underline;
 }
 
-.pt-4 {
-	padding-top: 16px;
+.myForm select {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	background-color: white;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	width: 100%;
+	border-right: 16px solid transparent;
+	font-family: 'Syne';
+	font-size: 14px;
+	color: #444444;
+}
+
+input[type="submit"]{
+	height: 36px;
+	font-size: 14px;
+	margin-top: 37px;
+}
+
+.labelAddInfos {
+	padding-top: 36px;
+	width: 100%;
+	text-align: start;
+}
+
+.inputAddInfos {
+	width: 100%;
+	text-align: start;
+}
+
+.loginBtn {
+    width: 222px;
+    height: 36px;
+    font-size: 14px;
+    background-color: #1D6154;
+    color: white;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    font-family: 'Syne';
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+.contactBtn {
+    width: 222px;
+    height: 36px;
+    font-size: 14px;
+    background-color: #1D6154;
+    color: white;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    font-family: 'Syne';
+	margin: auto;
 }

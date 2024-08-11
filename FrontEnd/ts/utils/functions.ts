@@ -41,7 +41,6 @@ export const handleLogOutClick = () => {
 
     const modifyBtn = document.querySelector('.modify-btn') as HTMLElement;
     const modal = document.querySelector('.modalDeletePhoto') as HTMLElement;
-
     if (modifyBtn && modal) {
         modifyBtn.addEventListener("click", () => {
             modal.style.display='flex';
@@ -51,7 +50,6 @@ export const handleLogOutClick = () => {
     const addphotobtn = document.querySelector('.addphotobtn') as HTMLElement;
     const modalAddPhoto = document.querySelector('.modalAddPhoto') as HTMLElement;
     const backbtn = document.querySelector('.backbtn') as HTMLElement;
-
     if (addphotobtn && modalAddPhoto) {
         addphotobtn.addEventListener("click", () => {
             modalAddPhoto.style.display='flex';
@@ -72,10 +70,8 @@ export const handleLogOutClick = () => {
         });
     });
 
-
     const newphoto = document.getElementById('newphoto') as HTMLInputElement;
     const newphotolabel = document.querySelector('.newphotolabel') as HTMLElement;
-
     if (newphoto) {
         newphoto.addEventListener("change", (event) => {
             const target = event.target as HTMLInputElement;
@@ -90,4 +86,62 @@ export const handleLogOutClick = () => {
         });
     }
 
+    const formAddPhoto = document.getElementById('formAddPhoto');
+    const btnAddPhoto = document.getElementById('btnAddPhoto') as HTMLInputElement;
+    if (formAddPhoto && btnAddPhoto) {
+        formAddPhoto.addEventListener("change", () => {
+            const formIsValid = checkFormInputs(formAddPhoto);
+            btnAddPhoto.disabled = !formIsValid;
+        });
+    }
+}
+
+const checkFormInputs = (form: HTMLElement): boolean => {
+    const inputs = form.querySelectorAll('input, select');
+    let isValid = true;
+
+    inputs.forEach(input => {
+        if (input instanceof HTMLInputElement) {
+            if (input.type === 'file') {
+                if (!input.files || input.files.length === 0) {
+                    isValid = false;
+                }
+            } else {
+                if (input.value.trim() === '') {
+                    isValid = false;
+                }
+            }
+        } else if (input instanceof HTMLSelectElement) {
+            if (input.value.trim() === '') {
+                isValid = false;
+            }
+        }
+    });
+
+    return isValid;
+}
+
+export const hideModals = () => {
+    const modal = document.querySelector('.modalDeletePhoto') as HTMLElement;
+    const modalAddPhoto = document.querySelector('.modalAddPhoto') as HTMLElement;
+    if (modal && modalAddPhoto) {
+        modalAddPhoto.style.display='none';
+        modal.style.display='none';
+    }
+}
+
+export const clearAddModal = () => {
+    const newphotoDOM = document.getElementById("newphoto") as HTMLInputElement;
+    const titleDOM = document.getElementById("title") as HTMLInputElement;
+    const categorieDOM = document.getElementById("category-select") as HTMLInputElement;
+    const newphotolabel = document.querySelector('.newphotolabel') as HTMLElement;
+    const btnAddPhoto = document.getElementById('btnAddPhoto') as HTMLInputElement;
+
+    if (newphotoDOM && titleDOM && categorieDOM && newphotolabel) { 
+        newphotoDOM.value = "";
+        titleDOM.value="";
+        newphotolabel.style.backgroundImage = `url('')`;
+        categorieDOM.value="";
+        btnAddPhoto.disabled = true;
+    }
 }
