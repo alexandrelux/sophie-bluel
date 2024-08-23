@@ -20,9 +20,14 @@
 	<link rel="stylesheet" href="./assets/filtrers.css">
 	<link rel="stylesheet" href="./assets/myform.css">
 	<link rel="stylesheet" href="./assets/modal.css">
+	<link rel="stylesheet" href="./assets/topbar.css">
 </head>
 <body>
 <header>
+	<div class="topbar">
+		<i class="fa-solid fa-pen-to-square"></i>
+		<span>Mode édition</span>
+	</div>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
@@ -95,9 +100,10 @@
 			<h3>Ajout photo</h3>
 			<form id="formAddPhoto" class="myForm formAddPhoto" action="#" method="POST" enctype="multipart/form-data">
 				<label for="newphoto" class="newphotolabel">
-					<i class="fa-regular fa-image"></i>
-					<span>+ Ajouter photo</span>
-					<p>jpg, png : 4mo max</p>
+					<div class="newphotolabelPreview"></div>
+					<i class="fa-regular fa-image newphotolabelInfo"></i>
+					<span class="newphotolabelInfo">+ Ajouter photo</span>
+					<p class="newphotolabelInfo">jpg, png : 4mo max</p>
 				</label>
 				<input required type="file" id="newphoto" name="newphoto" accept="image/png, image/jpeg"/>
 				<label class="labelAddInfos" for="title">Titre</label>

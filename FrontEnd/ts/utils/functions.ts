@@ -3,6 +3,9 @@ export const amIsLoged = () => {
     const logoutDOM = document.querySelector('.logout') as HTMLElement;
     const filtersDOM = document.querySelector('.filters') as HTMLElement;
     const modifyBtnDOM = document.querySelector('.modify-btn') as HTMLElement;
+    const topbar = document.querySelector('.topbar') as HTMLElement;
+    const header = document.querySelector('header') as HTMLElement;
+
 
     const localToken = window.localStorage.getItem("token");
     if (localToken) {
@@ -11,10 +14,14 @@ export const amIsLoged = () => {
             logoutDOM.style.display='inline';
         }
         if (filtersDOM) {
-            filtersDOM.style.display='none';;
+            filtersDOM.style.display='none';
         }
         if (modifyBtnDOM) {
-            modifyBtnDOM.style.display='block';;
+            modifyBtnDOM.style.display='block';
+        }
+        if (topbar && header) {
+            topbar.style.display='flex';
+            header.style.paddingTop='59px';
         }
     } else {
         if (loginDOM && logoutDOM) {
@@ -25,7 +32,11 @@ export const amIsLoged = () => {
             filtersDOM.style.display='flex';
         }
         if (modifyBtnDOM) {
-            modifyBtnDOM.style.display='none';;
+            modifyBtnDOM.style.display='none';
+        }
+        if (topbar && header) {
+            topbar.style.display='none';
+            header.style.paddingTop='0px';
         }
     }
 }
@@ -72,6 +83,8 @@ export const handleLogOutClick = () => {
 
     const newphoto = document.getElementById('newphoto') as HTMLInputElement;
     const newphotolabel = document.querySelector('.newphotolabel') as HTMLElement;
+    const newphotolabelInfoList = document.querySelectorAll('.newphotolabelInfo') as NodeListOf<HTMLElement>;
+    const newphotolabelPreview = document.querySelector('.newphotolabelPreview') as HTMLElement;
     if (newphoto) {
         newphoto.addEventListener("change", (event) => {
             const target = event.target as HTMLInputElement;
@@ -79,7 +92,11 @@ export const handleLogOutClick = () => {
                 const file = target.files[0];
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    newphotolabel.style.backgroundImage = `url('${e.target?.result}')`;
+                    newphotolabelInfoList.forEach((newphotolabelInfo) => {
+                        newphotolabelInfo.style.display='none';
+                    });
+                    newphotolabelPreview.style.backgroundImage = `url('${e.target?.result}')`;
+                    newphotolabelPreview.style.display='block';
                 }
                 reader.readAsDataURL(file);
             }
@@ -136,12 +153,21 @@ export const clearAddModal = () => {
     const categorieDOM = document.getElementById("category-select") as HTMLInputElement;
     const newphotolabel = document.querySelector('.newphotolabel') as HTMLElement;
     const btnAddPhoto = document.getElementById('btnAddPhoto') as HTMLInputElement;
+    const newphotolabelInfoList = document.querySelectorAll('.newphotolabelInfo') as NodeListOf<HTMLElement>;
+    const newphotolabelPreview = document.querySelector('.newphotolabelPreview') as HTMLElement;
 
-    if (newphotoDOM && titleDOM && categorieDOM && newphotolabel) { 
+    if (newphotoDOM && titleDOM && categorieDOM) {
         newphotoDOM.value = "";
         titleDOM.value="";
-        newphotolabel.style.backgroundImage = `url('')`;
         categorieDOM.value="";
         btnAddPhoto.disabled = true;
+    }
+
+    if (newphotolabel && newphotolabelInfoList && newphotolabelPreview) {
+        newphotolabelInfoList.forEach((newphotolabelInfo) => {
+            newphotolabelInfo.style.display='block';
+        });
+        newphotolabelPreview.style.display='none';
+        newphotolabelPreview.style.backgroundImage = `url('')`;
     }
 }
